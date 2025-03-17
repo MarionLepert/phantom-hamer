@@ -14,11 +14,11 @@ os.environ["PYOPENGL_PLATFORM"] = "egl"
 ROOT_DIR = "./"
 VIT_DIR = os.path.join(ROOT_DIR, "third-party/ViTPose")
 
-class ViTPoseModel(object):
+class ViTPoseModel(object, root_dir=ROOT_DIR, vit_dir=VIT_DIR):
     MODEL_DICT = {
         'ViTPose+-G (multi-task train, COCO)': {
-            'config': f'{VIT_DIR}/configs/wholebody/2d_kpt_sview_rgb_img/topdown_heatmap/coco-wholebody/ViTPose_huge_wholebody_256x192.py',
-            'model': f'{ROOT_DIR}/_DATA/vitpose_ckpts/vitpose+_huge/wholebody.pth',
+            'config': f'{vit_dir}/configs/wholebody/2d_kpt_sview_rgb_img/topdown_heatmap/coco-wholebody/ViTPose_huge_wholebody_256x192.py',
+            'model': f'{root_dir}/_DATA/vitpose_ckpts/vitpose+_huge/wholebody.pth',
         },
     }
 
