@@ -14,15 +14,14 @@ os.environ["PYOPENGL_PLATFORM"] = "egl"
 ROOT_DIR = "./"
 VIT_DIR = os.path.join(ROOT_DIR, "third-party/ViTPose")
 
-class ViTPoseModel(object, root_dir=ROOT_DIR, vit_dir=VIT_DIR):
-    MODEL_DICT = {
-        'ViTPose+-G (multi-task train, COCO)': {
-            'config': f'{vit_dir}/configs/wholebody/2d_kpt_sview_rgb_img/topdown_heatmap/coco-wholebody/ViTPose_huge_wholebody_256x192.py',
-            'model': f'{root_dir}/_DATA/vitpose_ckpts/vitpose+_huge/wholebody.pth',
-        },
-    }
-
-    def __init__(self, device: str | torch.device):
+class ViTPoseModel(object):
+    def __init__(self, device: str | torch.device, root_dir: str = ROOT_DIR, vit_dir: str = VIT_DIR):
+        self.MODEL_DICT = {
+            'ViTPose+-G (multi-task train, COCO)': {
+                'config': f'{vit_dir}/configs/wholebody/2d_kpt_sview_rgb_img/topdown_heatmap/coco-wholebody/ViTPose_huge_wholebody_256x192.py',
+                'model': f'{root_dir}/_DATA/vitpose_ckpts/vitpose+_huge/wholebody.pth',
+            },
+        }
         self.device = torch.device(device)
         self.model_name = 'ViTPose+-G (multi-task train, COCO)'
         self.model = self._load_model(self.model_name)
